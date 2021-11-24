@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twinkler</title>
+  <style>
+    section {
+      height: 95vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    form header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    form #twinkle {
+      min-width: 40em;
+      min-height: 5em;
+    }
+
+    .twinkle-error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <form>
+      <header>
+        <label for="twinkle">Say something!</label>
+        <span class="twinkle-count"></span>
+      </header>
+      <textarea id="twinkle" name="twinkle"></textarea>
+      <div class="twinkle-error">&nbsp;</div>
+      <button>Chirp!</button>
+    </form>
+  </section>
+
+
+
+  <script>
+    function setErrorMessage(event) {
+      let twinkle = event.target;
+      let text = twinkle.value;
+      document.querySelector('.twinkle-count').textContent = text.length;
+      if (text.length > 12) {
+        document.querySelector('.twinkle-error').textContent = "too long";
+      } else if (text.length < 1) {
+        document.querySelector('.twinkle-error').textContent = "too short";
+      } else {
+        document.querySelector('.twinkle-error').textContent = '\xa0';
+      }
+    }
+    document.querySelector('#twinkle').addEventListener('keyup', setErrorMessage)
+  </script>
+</body>
+
+</html>
